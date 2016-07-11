@@ -110,7 +110,7 @@ class _Peer(object):
     @staticmethod
     def get_peers():
         _Peer._lock.acquire()
-        peers = [Location(addr, port) for (addr, port) in _Peer.peers.iterkeys()]
+        peers = [PeerStatus(peer.location, peer.name, PeerStatus.Online) for peer in _Peer.peers.itervalues()]
         _Peer._lock.release()
         return peers
 
